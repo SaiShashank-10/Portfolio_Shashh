@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ⚡ Premium Portfolio & Personal Brand Website
 
 ![Project Status](https://img.shields.io/badge/status-active-success.svg)
@@ -153,3 +154,6 @@ Contributions are what make the open-source community such an amazing place to l
 **Sai Shashank** - [LinkedIn Profile](https://linkedin.com/in/your-profile) - email@example.com
 
 Project Link: [https://github.com/your-username/portfolio](https://github.com/your-username/portfolio)
+=======
+# Enter he Instructions here
+>>>>>>> ed9ea6330d3c8e483b045f455df71ec8219adb6e
