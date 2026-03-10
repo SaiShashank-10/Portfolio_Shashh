@@ -83,31 +83,309 @@
     }
 }
 
-
-/* Animated gradient highlight for name */
-/* .name-gleam {
-    position: relative;
+/* Typewriter cursor blink */
+.typewriter-cursor {
     display: inline-block;
-    background: linear-gradient(120deg, #f6f7fb, #d9dde3, #f6f7fb);
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: name-gleam-shift 3.5s ease-in-out infinite;
+    animation: cursor-blink 0.8s step-end infinite;
+    font-weight: 300;
+    margin-left: 1px;
 }
 
-@keyframes name-gleam-shift {
-    0% {
-        background-position: 120% 0%;
-        filter: drop-shadow(0 0 4px rgba(230, 236, 243, 0.25));
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Tech stack marquee */
+.marquee-track {
+    display: flex;
+    animation: marquee-scroll 30s linear infinite;
+    width: max-content;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Home page marquee strip */
+.marquee-track-home {
+    display: flex;
+    animation: marquee-scroll-home 25s linear infinite;
+    width: max-content;
+}
+
+@keyframes marquee-scroll-home {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); }
+}
+
+/* ═══════════════════════════════════════════
+   SERVICES CONSTELLATION — Orbiting particle
+   ═══════════════════════════════════════════ */
+.service-orbit-ring {
+    animation: service-orbit-spin linear infinite;
+    pointer-events: none;
+}
+
+@keyframes service-orbit-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Hero image glow pulse */
+.hero-image-glow {
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Featured project card shine */
+.card-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+    transition: left 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-shine:hover::before {
+    left: 100%;
+}
+
+
+/* ────────────────────────────────────────────────
+   Profile Image Enhancement Styles
+   ──────────────────────────────────────────────── */
+
+/* Portrait mask — seamless all-edge blend into background */
+.hero-portrait-mask {
+    -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0%, black 5%, black 55%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-composite: destination-in;
+    mask-image:
+        linear-gradient(to bottom, transparent 0%, black 5%, black 55%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-composite: intersect;
+}
+
+/* Enhanced profile image — lighten blend hides dark JPEG background */
+.profile-image-enhanced {
+    mix-blend-mode: lighten;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.profile-image-wrapper:hover .profile-image-enhanced {
+    transform: scale(1.03);
+    filter: brightness(1.06) contrast(1.02);
+}
+
+/* Ambient glow behind portrait — very subtle, avoids visible edges */
+.hero-portrait-glow {
+    background: radial-gradient(ellipse at 50% 35%, rgba(120, 120, 180, 0.05) 0%, transparent 60%);
+    filter: blur(60px);
+    transform: scale(1.5);
+}
+@media (prefers-color-scheme: dark) {
+    .hero-portrait-glow {
+        background: radial-gradient(ellipse at 50% 35%, rgba(140, 140, 220, 0.04) 0%, transparent 60%);
     }
-    50% {
-        background-position: -20% 100%;
-        filter: drop-shadow(0 0 8px rgba(199, 203, 206, 0.35));
+}
+
+/* Floating badge lift on wrapper hover */
+.floating-badge {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-image-wrapper:hover .floating-badge {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* CTA Section — Click ripple rings */
+.cta-ripple-ring {
+    width: 0;
+    height: 0;
+    opacity: 0.6;
+    animation: cta-ripple-expand 1.2s ease-out forwards;
+}
+
+@keyframes cta-ripple-expand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
     }
     100% {
-        background-position: 120% 0%;
-        filter: drop-shadow(0 0 4px rgba(230, 236, 243, 0.25));
+        width: 500px;
+        height: 500px;
+        opacity: 0;
     }
-} */
+}
 
+
+/* ────────────────────────────────────────────────
+   About Page — 3D Constellation & Card Styles
+   ──────────────────────────────────────────────── */
+
+/* Skill node — shine sweep on hover */
+.skill-node-shine {
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 45%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.25) 55%,
+        transparent 70%
+    );
+}
+
+.dark .skill-node-shine {
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.06) 45%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 55%,
+        transparent 70%
+    );
+}
+
+/* Skill node — glass edge highlight */
+.skill-node::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dark .skill-node::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%);
+}
+
+/* Tech tile — inner edge glow on hover */
+.tech-tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.tech-tile:hover::before {
+    opacity: 1;
+}
+
+/* Fun Facts dot grid background */
+.fun-facts-dot-grid {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* ═══════════════════════════════════════════
+   SKILLS CONSTELLATION — Tech stack marquee
+   ═══════════════════════════════════════════ */
+@keyframes marquee-slow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+}
+
+.animate-marquee-slow {
+    animation: marquee-slow 30s linear infinite;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT — Gradient border rotation
+   ═══════════════════════════════════════════ */
+@keyframes gradient-rotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* ═══════════════════════════════════════════
+   HERO — Holographic Portrait Effects
+   ═══════════════════════════════════════════ */
+
+/* Rotating conic-gradient ring around portrait */
+.hero-gradient-ring {
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(129, 140, 248, 0.15) 60deg,
+        transparent 120deg,
+        rgba(52, 211, 153, 0.12) 200deg,
+        transparent 260deg,
+        rgba(236, 72, 153, 0.08) 320deg,
+        transparent 360deg
+    );
+    animation: hero-ring-spin 10s linear infinite;
+    -webkit-mask: radial-gradient(
+        closest-side,
+        transparent calc(100% - 1.5px),
+        black calc(100% - 1.5px),
+        black 100%,
+        transparent 100%
+    );
+    mask: radial-gradient(
+        closest-side,
+        transparent calc(100% - 1.5px),
+        black calc(100% - 1.5px),
+        black 100%,
+        transparent 100%
+    );
+}
+
+@keyframes hero-ring-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Holographic scan line that sweeps down over portrait */
+.hero-scan-line {
+    height: 1.5px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(129, 140, 248, 0.25) 30%,
+        rgba(129, 140, 248, 0.5) 50%,
+        rgba(129, 140, 248, 0.25) 70%,
+        transparent 100%
+    );
+    position: absolute;
+    left: 0;
+    right: 0;
+    animation: hero-scan-sweep 3.5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes hero-scan-sweep {
+    0% { top: -5%; opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { top: 105%; opacity: 0; }
+}
