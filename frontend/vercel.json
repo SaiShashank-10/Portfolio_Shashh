@@ -1,7 +1,10 @@
 {
     "version": 2,
     "framework": null,
-    "buildCommand": "yarn build",
-    "outputDirectory": "build"
+    "buildCommand": "npx craco build",
+    "outputDirectory": "build",
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
   }
   
